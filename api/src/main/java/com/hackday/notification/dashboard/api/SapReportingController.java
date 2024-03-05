@@ -5,6 +5,8 @@ import com.hackday.notification.dashboard.api.services.SapReportingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class SapReportingController {
     @Autowired
@@ -12,7 +14,7 @@ public class SapReportingController {
 
     @GetMapping("/sap-reporter/{articleId}")
     @ResponseBody
-    public NotificationRecord report(@PathVariable String articleId) {
+    public List<NotificationRecord> report(@PathVariable String articleId) {
         return sapReportingService.getNotificationRecord(articleId);
     }
 
