@@ -1,6 +1,8 @@
 package com.hackday.notification.dashboard.api;
 
 import com.hackday.notification.dashboard.api.model.NotificationRecord;
+import com.hackday.notification.dashboard.api.services.NotificationTrackAPIService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,16 +12,13 @@ import java.util.Map;
 
 @RestController
 public class NotificationTrackAPIController {
+
+    @Autowired
+    NotificationTrackAPIService notificationTrackAPIService;
+
     @GetMapping("/notification-track-api")
     @ResponseBody
     public Map<String, List<NotificationRecord>> report(@PathVariable String articleId) {
-
-        Map<String, List<NotificationRecord>> records = new HashMap<>();
-        records.put("sap",new ArrayList<>());
-        records.put("tnh",new ArrayList<>());
-        records.put("ens",new ArrayList<>());
-        records.put("sfmc",new ArrayList<>());
-        return records;
-
+        return notificationTrackAPIService.report(articleId);
     }
 }

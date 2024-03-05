@@ -15,7 +15,7 @@ public class SapReportingController {
     @GetMapping("/sap-reporter/{articleId}")
     @ResponseBody
     public List<NotificationRecord> report(@PathVariable String articleId) {
-        return sapReportingService.getNotificationRecord(articleId);
+        return null;
     }
 
 }

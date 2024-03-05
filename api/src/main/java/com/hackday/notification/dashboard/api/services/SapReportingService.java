@@ -5,6 +5,8 @@ import com.hackday.notification.dashboard.api.model.NotificationRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SapReportingService {
 
@@ -13,6 +15,6 @@ public class SapReportingService {
 
 
     public List<NotificationRecord> getNotificationRecord(String articleID) {
-        return sapDataSource.getData().get(articleID);
+        return null;
     }
 }
