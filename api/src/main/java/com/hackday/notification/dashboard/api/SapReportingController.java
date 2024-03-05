@@ -1,17 +1,19 @@
 package com.hackday.notification.dashboard.api;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.hackday.notification.dashboard.api.model.NotificationRecord;
+import com.hackday.notification.dashboard.api.services.SapReportingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SapReportingController {
+    @Autowired
+    SapReportingService sapReportingService;
 
-    @GetMapping("/sap-reporter")
+    @GetMapping("/sap-reporter/{articleId}")
     @ResponseBody
-    public String sayHello(@RequestParam(name = "articleId", required = false, defaultValue = "ABC") String articleId) {
-        return "Hello World";
+    public NotificationRecord report(@PathVariable String articleId) {
+        return sapReportingService.getNotificationRecord(articleId);
     }
 
 }
