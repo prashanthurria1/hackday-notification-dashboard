@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Reports</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+         body {
+            font-family: APTypeProText, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 2pt; /* Remove bottom margin of h1 */
+            font-size: 24px; /* Adjust font size as needed */
+        }
+        .subtitle {
+            margin-top: 0; /* Remove top margin */
+            font-size: 16px; /* Adjust font size as needed */
+            color: #848484; /* Color for the subtitle */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        table, th, td {
+            border: none;
+            border-bottom: 1px solid #ccc; /* Light grey horizontal lines */
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            color: #848484; /* Light grey color for header fonts */
+            background-color: transparent; /* Remove grey background */
+        }
+        .green-circle {
+            display: inline-block; /* Makes it work inline with text or other elements */
+            width: 10px; /* Size of the circle */
+            height: 10px; /* Size of the circle */
+            background-color: green; /* Color of the circle */
+            border-radius: 50%; /* Makes the square a circle */
+            margin-right: 5px; /* Optional: Adds some space to the right if next to text or another element */
+        }
+        .yellow-circle {
+            display: inline-block; /* Makes it work inline with text or other elements */
+            width: 10px; /* Size of the circle */
+            height: 10px; /* Size of the circle */
+            background-color: rgb(214, 153, 73); /* Color of the circle */
+            border-radius: 50%; /* Makes the square a circle */
+            margin-right: 5px; /* Optional: Adds some space to the right if next to text or another element */
+        }
+        .black-circle {
+            display: inline-block; /* Makes it work inline with text or other elements */
+            width: 10px; /* Size of the circle */
+            height: 10px; /* Size of the circle */
+            background-color: rgb(0, 0, 0); /* Color of the circle */
+            border-radius: 50%; /* Makes the square a circle */
+            margin-right: 5px; /* Optional: Adds some space to the right if next to text or another element */
+        }
+    </style>
+</head>
+<body>
+    <label for="articleIdInput">Enter Article ID:</label>
+    <input type="text" id="articleIdInput" name="articleIdInput">
+    <button onclick="fetchRecords()">Fetch Records</button>
+    <div id="recordsContainer"></div>
+
+    <h1>NotiTrack Article Search</h1>
+    <p class="subtitle"><b>Notification journey</b></p>
+
+
+    <div id="fetchedResultsContainer"></div>
+    
+    <script>
+        async function fetchRecords() {
+            const articleId = document.getElementById('articleIdInput').value;
+            if (!articleId) {
+                alert('Please enter an Article ID');
+                return;
+            }
+    
+            try {
+                const response = await fetch(`http://localhost:8080/api/reports/${articleId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+    
+                const data = await response.json();
+                
+                // Use fetchedResultsContainer to display fetched data
+                const container = document.getElementById('fetchedResultsContainer');
+                // Clear previous fetched results and add static table
+                let tableHTML = '';
+        if (articleId === '33UW7514745601000650801') {
+            tableHTML = `
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Notification</th>
+                            <th>SAP EM</th>
+                            <th>Track Notification Handler (TNH)</th>
+                            <th>ENS</th>
+                            <th>SFMC/ PUSH Service</th>
+                            <th>Customer details</th>
+                        </tr>
+                        <tr>
+                            <td>On It's Way</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td>Customer Details 1</td>
+                        </tr>
+                        <tr>
+                            <td>Coming Today</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td>Customer Details 2</td>
+                        </tr>
+                        <tr>
+                            <td>Awaiting Collection</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td>Customer Details 3</td>
+                        </tr>
+                        <tr>
+                            <td>Delivered</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td>Customer Details 4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+        } else if (articleId === '33UW7514745601000650802') {
+            tableHTML = `
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Notification</th>
+                            <th>SAP EM</th>
+                            <th>Track Notification Handler (TNH)</th>
+                            <th>ENS</th>
+                            <th>SFMC/ PUSH Service</th>
+                            <th>Customer details</th>
+                        </tr>
+                        <tr>
+                            <td>On It's Way</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td>Customer Details 1</td>
+                        </tr>
+                        <tr>
+                            <td>Coming Today</td>
+                            <td><span class="green-circle"></span>Processed</td>
+                            <td><span class="yellow-circle"></span>Not found</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td>Customer Details 2</td>
+                        </tr>
+                        <tr>
+                            <td>Awaiting Collection</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td>Customer Details 3</td>
+                        </tr>
+                        <tr>
+                            <td>Delivered</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td><span class="black-circle"></span>N/A</td>
+                            <td>Customer Details 4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+        } else {
+            // Default table for other articleIDs
+            tableHTML = `
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Notification</th>
+                            <th>SAP EM</th>
+                            <th>Track Notification Handler (TNH)</th>
+                            <th>ENS</th>
+                            <th>SFMC/ PUSH Service</th>
+                            <th>Customer details</th>
+                        </tr>
+                        <tr>
+                            <td>On It's Way</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Coming Today</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Awaiting Collection</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Delivered</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+        }
+
+        container.innerHTML = tableHTML;
+                
+                // Dynamically add fetched data below static table
+                Object.keys(data).forEach(systemKey => {
+                    const systemRecords = data[systemKey];
+                    const systemHeader = document.createElement('h2');
+                    systemHeader.textContent = `${systemKey.toUpperCase()} Records`;
+                    container.appendChild(systemHeader);
+    
+                    const table = document.createElement('table');
+                    table.innerHTML = `
+                        <tr>
+                            <th>ArticleID</th>
+                            <th>CorrelationID</th>
+                            <th>Milestone</th>
+                            <th>System</th>
+                            <th>Status</th>
+                        </tr>
+                    `;
+                    systemRecords.forEach(record => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${record.articleID}</td>
+                            <td>${record.correlationID}</td>
+                            <td>${record.milestone}</td>
+                            <td>${record.system}</td>
+                            <td>${record.status}</td>
+                        `;
+                        table.appendChild(row);
+                    });
+                    container.appendChild(table);
+                });
+            } catch (error) {
+                console.error('Failed to fetch records:', error);
+                alert('Failed to fetch records. See console for details.');
+            }
+        }
+    </script>
+    
+</body>
+</html>
