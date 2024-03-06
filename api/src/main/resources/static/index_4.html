@@ -1,0 +1,26 @@
+<html>
+<style>
+    h2 {text-align: center;}
+    p {text-align: center;}
+    div {text-align: center;}
+</style>
+<head>
+    <script>
+        function myFunction() {
+            alert('Hi')
+            var articleId =  document.getElementById('articleId').value
+            alert(articleId)
+            var url = "http://localhost:8080/notification-track-ui/" + articleId
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body>
+<h2>Notification Dashboard</h2>
+<br/>
+Article ID: <input id="articleId" type="text"/>
+<br/>
+<br/>
+<button onclick="myFunction()">Redirect</button>
+</body>
+</html>
