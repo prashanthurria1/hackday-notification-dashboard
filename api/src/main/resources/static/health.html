@@ -32,20 +32,20 @@
                         </tr>
                     `;
                     var sap = data['sap']
-                    var sapCurrentHealth = sap.currentHealth
-                    var sapTwentyFourHourHealth = sap.twentyFourHourHealth
+                    var sapCurrentHealth = translate(sap.currentHealth)
+                    var sapTwentyFourHourHealth = translate(sap.twentyFourHourHealth)
 
                     var ens = data['ens']
-                    var ensCurrentHealth = ens.currentHealth
-                    var ensTwentyFourHourHealth = ens.twentyFourHourHealth
+                    var ensCurrentHealth = translate(ens.currentHealth)
+                    var ensTwentyFourHourHealth = translate(ens.twentyFourHourHealth)
 
                     var sfmc = data['sfmc']
-                    var sfmcCurrentHealth = sfmc.currentHealth
-                    var sfmcTwentyFourHourHealth = sfmc.twentyFourHourHealth
+                    var sfmcCurrentHealth = translate(sfmc.currentHealth)
+                    var sfmcTwentyFourHourHealth = translate(sfmc.twentyFourHourHealth)
 
                     var tnh = data['tnh']
-                    var tnhCurrentHealth = tnh.currentHealth
-                    var tnhTwentyFourHourHealth = tnh.twentyFourHourHealth
+                    var tnhCurrentHealth = translate(tnh.currentHealth)
+                    var tnhTwentyFourHourHealth = translate(tnh.twentyFourHourHealth)
                     console.log(tnhTwentyFourHourHealth)
 
                     for (const key in data1) {
@@ -87,10 +87,19 @@
         }
     }
 
+    function translate(bol){
+        if(bol == true){
+            return "&#9989;"
+        }
+        if(bol==false) {
+            return "&#9888;"
+        }
+    }
+
 </script>
 <style>
     table {
-        width: 100%;
+        width: 60%;
         border-collapse: collapse;
     }
 
